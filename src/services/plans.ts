@@ -33,6 +33,17 @@ export type Plan = {
   };
 };
 
+export type CreatePlan = {
+  userId: string; 
+  name: string;
+  estimatedPrice: number;
+  address: string;
+  image: string;
+  description: string;
+  estimatedTime: number; // en minutos
+  recomendations: string;
+};
+
 // Pide al back la lista de todos los planes
 export async function getPlans(): Promise<PlanSummary[]> {
   const response = await fetch(`${API_URL}/plans`, { cache: "no-store" });
@@ -70,5 +81,36 @@ export async function likePlan(planId: string, userId: string) {
   if (!response.ok) {
     const data = await response.json();
     throw new Error(data.message || "No se pudo dar me gusta");
+  }
+}
+
+export async function createPlan(
+            userId: string,
+            name: string,
+            estimatedPrice: number,
+            address: string,
+            image: string,
+            description: string,
+            estimatedTime: number,
+            recomendations: string
+        ) {
+  const res = await fetch(`${API_URL}/plans`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+          name: name,
+          address: address,
+          estimatedPrice: estimatedPrice,
+          image: image,
+          description: description,
+          estimatedTime: estimatedTime,
+          recomendations: recomendations,
+          userId: userId
+      }),
+  })
+  console.log("res", res)
+  if (!res.ok) {
+    const data = await res.json();
+    throw new Error(data.message || "No se pudo crear el plan");
   }
 }
