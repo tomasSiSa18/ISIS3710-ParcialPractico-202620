@@ -18,7 +18,7 @@ export default function UserMenu() {
   if (session.id) {
     return (
       <div className="flex items-center gap-6">
-        <Link href="/plans/create-plan" className="text-lg text-slate-700">
+        <Link id="create-plan-link" href="/plans/create-plan" className="text-lg text-slate-700">
         <div className="bg-blue-600 text-white text-lg font-semibold rounded-xl px-6 py-3 cursor-pointer">
             + Crear Plan
           </div>
