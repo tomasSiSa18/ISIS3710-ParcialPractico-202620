@@ -69,6 +69,7 @@ export default function LoginPage() {
         <button
           type="submit"
           className="w-full bg-blue-700 text-white font-semibold rounded-xl py-4 mt-8"
+          aria-label="iniciar sesion boton"
         >
           Iniciar sesión
         </button>
