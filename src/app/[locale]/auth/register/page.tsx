@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { register } from "@/services/auth";
 import { saveSession } from "@/services/session";
+import { useTranslations } from "use-intl";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -12,6 +13,8 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const t = useTranslations("auth.register")
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,7 +34,7 @@ export default function RegisterPage() {
     <div className="flex-1 flex flex-col items-center justify-center bg-slate-50">
 
 
-      <h1 className="text-5xl font-bold text-slate-900 mt-6">Crea tu cuenta</h1>
+      <h1 className="text-5xl font-bold text-slate-900 mt-6">{t("register")}</h1>
       <p className="text-lg text-slate-600 mt-2">
         Regístrate para descubrir y unirte a nuevos planes.
       </p>
